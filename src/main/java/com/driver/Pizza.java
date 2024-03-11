@@ -1,25 +1,23 @@
-package com.driver;
-
 public class Pizza {
     private boolean isVeg;
     private double basePrice;
     private boolean extraCheeseAdded;
     private boolean extraToppingsAdded;
     private boolean paperBagAdded;
-    protected static final double VEG_BASE_PRICE = 300;
-    protected static final double NON_VEG_BASE_PRICE = 400;
-    protected static final double EXTRA_CHEESE_PRICE = 80;
-    protected static final double VEG_EXTRA_TOPPINGS_PRICE = 70;
-    protected static final double NON_VEG_EXTRA_TOPPINGS_PRICE = 120;
-    protected static final double PAPER_BAG_PRICE = 20;
+    private static final double VEG_BASE_PRICE = 300;
+    private static final double NON_VEG_BASE_PRICE = 400;
+    private static final double EXTRA_CHEESE_PRICE = 80;
+    private static final double VEG_EXTRA_TOPPINGS_PRICE = 70;
+    private static final double NON_VEG_EXTRA_TOPPINGS_PRICE = 120;
+    private static final double PAPER_BAG_PRICE = 20;
 
-    public Pizza(boolean isVeg) {
+    public Pizza(boolean isVeg, boolean deluxe) {
         this.isVeg = isVeg;
         this.basePrice = isVeg ? VEG_BASE_PRICE : NON_VEG_BASE_PRICE;
-    }
-    
-    public boolean isVeg() {
-        return isVeg;
+        if (deluxe) {
+            addExtraCheese(EXTRA_CHEESE_PRICE);
+            addExtraToppings(isVeg ? VEG_EXTRA_TOPPINGS_PRICE : NON_VEG_EXTRA_TOPPINGS_PRICE);
+        }
     }
 
     public void addExtraCheese(double price) {
@@ -43,6 +41,10 @@ public class Pizza {
         }
     }
 
+    public double getTotalPrice() {
+        return basePrice;
+    }
+
     public String generateBill() {
         StringBuilder bill = new StringBuilder();
         bill.append("Base Price Of The Pizza: ").append(basePrice).append("\n");
@@ -55,7 +57,7 @@ public class Pizza {
         if (paperBagAdded) {
             bill.append("Paperbag Added: ").append(PAPER_BAG_PRICE).append("\n");
         }
-        bill.append("Total Price: ").append(basePrice).append("\n");
+        bill.append("Total Price: ").append(getTotalPrice()).append("\n");
         return bill.toString();
     }
 }

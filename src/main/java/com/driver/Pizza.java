@@ -6,16 +6,20 @@ public class Pizza {
     private boolean extraCheeseAdded;
     private boolean extraToppingsAdded;
     private boolean paperBagAdded;
-    private static final double VEG_BASE_PRICE = 300;
-    private static final double NON_VEG_BASE_PRICE = 400;
-    private static final double EXTRA_CHEESE_PRICE = 80;
-    private static final double VEG_EXTRA_TOPPINGS_PRICE = 70;
-    private static final double NON_VEG_EXTRA_TOPPINGS_PRICE = 120;
-    private static final double PAPER_BAG_PRICE = 20;
+    protected static final double VEG_BASE_PRICE = 300;
+    protected static final double NON_VEG_BASE_PRICE = 400;
+    protected static final double EXTRA_CHEESE_PRICE = 80;
+    protected static final double VEG_EXTRA_TOPPINGS_PRICE = 70;
+    protected static final double NON_VEG_EXTRA_TOPPINGS_PRICE = 120;
+    protected static final double PAPER_BAG_PRICE = 20;
 
     public Pizza(boolean isVeg) {
         this.isVeg = isVeg;
         this.basePrice = isVeg ? VEG_BASE_PRICE : NON_VEG_BASE_PRICE;
+    }
+    
+    public boolean isVeg() {
+        return isVeg;
     }
 
     public void addExtraCheese(double price) {

@@ -1,4 +1,5 @@
 package com.driver;
+
 public class Pizza {
     private boolean isVeg;
     private double basePrice;
@@ -54,4 +55,3 @@ public class Pizza {
         return bill.toString();
     }
 }
-
